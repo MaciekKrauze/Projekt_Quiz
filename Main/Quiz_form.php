@@ -102,19 +102,22 @@ for ($k = 0; $k < count($questions); $k++) {
 
         for ($l = 1; $l < count($questions) + 1; $l++) {
             if($user_answers[$l] == $correct_answers[$l] ){
-                echo "dobrze";
+               $points++;
             }
             else{
-                echo "a szkoda gadać";
+
             }
        }
+        $query4 = "INSERT INTO user_quiz_attempts (user_id, quiz_id, score) VALUES ($id_users, $quiz_id, $points)";
+        $result4 = $conn->query($query4);
 
+        header("Location: QuizList.php");
     }
     ?>
 </main>
 <footer>
     <?php
-    // include 'Footer.php'
+     include 'Footer.php'
     ?>
 </footer>
 </body>
