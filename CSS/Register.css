@@ -1,0 +1,46 @@
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+header {
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 2em;
+    align-items: center;
+    flex-direction: column;
+}
+
+
+div {
+    padding: 0.5em;
+}
+label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    max-width: 25em;
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"]{
+    background-color: #81b64c;
+    color: white;
+    max-width: 25em;
+    width: 110%;
+    height: 2.5em;
+    border-radius: 10px;
+    border: none;
+}

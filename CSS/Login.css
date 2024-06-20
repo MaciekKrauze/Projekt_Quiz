@@ -1,0 +1,43 @@
+body {
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    min-height: 100vh; /* Set body height to viewport height */
+}
+
+header {
+    display: flex;
+    flex-direction: column; /* Maintain original layout */
+}
+
+main {
+    display: flex;
+    justify-content: center; /* Center main content horizontally */
+    padding: 2em;
+    align-items: center; /* Center content vertically if needed */
+    flex-direction: column;
+}
+
+div {
+    padding: 0.5em;
+}
+label {
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 0.5em;
+    border: 1px solid #ccc;
+}
+
+input[type="submit"]{
+    background-color: #81b64c;
+    color: white;
+    width: 110%;
+    height: 2.5em;
+    border-radius: 10px;
+    border: none;
+}
