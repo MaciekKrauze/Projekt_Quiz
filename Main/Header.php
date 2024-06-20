@@ -2,6 +2,7 @@
 
 <ul>
     <?php
+
     if((isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
         header("Location: Login.php");
         exit;
@@ -9,7 +10,6 @@
     echo "<li><a href=\"QuizList.php\">Quizy</a></li>";
     echo "<li><a href=\"Profile.php\">Profil</a></li>";
     echo "<li><a href=\"Stats.php\">Statystyki</a></li>";
-    echo "<li><a href=\"Settings.php\">Ustawienia</a></li>";
 
     if(isset($_SESSION["role"]) && ($_SESSION["role"] >1)){
         echo "<li><a href=\"AdminPanel.php\">Admin Panel</a></li>";

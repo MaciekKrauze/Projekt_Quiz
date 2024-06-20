@@ -20,7 +20,6 @@ session_start();
         <li><a href="QuizList.php">Quizy</a></li>
         <li><a href="Profile.php">Profil</a></li>
         <li><a href="Stats.php">Statystyki</a></li>
-        <li><a href="Settings.php">Ustawienia</a></li>
         <li><a href="Quiz_form.php">quiz</a></li>
         <?php
 

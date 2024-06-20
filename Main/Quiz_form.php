@@ -1,7 +1,7 @@
 <?php
 session_start();
 $id_users = $_SESSION['id_users'];
-$quiz_id = 1;
+$quiz_id = $_COOKIE['selected_quiz'];
 
 include_once "Connect.php";
 
