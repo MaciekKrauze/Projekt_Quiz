@@ -1,6 +1,6 @@
 <?php
 session_start();
-$id_users = 1;
+$id_users = $_SESSION['id_users'];
 $quiz_id = 1;
 
 include_once "Connect.php";

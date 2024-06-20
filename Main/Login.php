@@ -55,30 +55,15 @@ include_once "Connect.php";
 
     if ($result->num_rows > 0) {
         while($row = $result->fetch_assoc()) {
-            $first_name = $row['first_name'];
-            $last_name = $row['last_name'];
-            $user_name = $row['user_name'];
-            $email = $row['email'];
+            $id_users = $row['id_users'];
             $password = $row['password'];
             $role = $row['role'];
-            $avatar = $row['avatar'];
-            $created_at = $row['created_at'];
 
         }
     }
         if($password_given == $password){
-
-            $_SESSION["id_users"] = $row['id_users'];
-            $_SESSION["first_name"] = $first_name;
-            $_SESSION["last_name"] = $last_name;
-            $_SESSION["user_name"] = $user_name;
-            $_SESSION["email"] = $email;
-            $_SESSION["password"] = $password;
+            $_SESSION["id_users"] = $id_users ;
             $_SESSION["role"] = $role;
-            $_SESSION["avatar"] = $avatar;
-            $_SESSION["created_at"] = $created_at;
-
-
             header("Location: Index.php");
             exit;
         }

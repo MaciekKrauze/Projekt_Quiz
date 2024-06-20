@@ -23,6 +23,7 @@ session_start();
         <li><a href="Settings.php">Ustawienia</a></li>
         <li><a href="Quiz_form.php">quiz</a></li>
         <?php
+
         if(isset($_SESSION["role"]) && ($_SESSION["role"] >1)){
             echo "<li><a href=\"AdminPanel.php\">Admin Panel</a></li>";
         }

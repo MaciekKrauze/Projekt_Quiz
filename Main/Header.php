@@ -19,7 +19,7 @@
     }
     if (isset($_POST['logOut'])) {
         session_unset();
-        session_destroy();
+//        session_destroy();
 
         header("Location: Index.php");
 
