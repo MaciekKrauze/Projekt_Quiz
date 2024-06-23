@@ -14,9 +14,7 @@ $id_users = $_SESSION['id_users'];
 </head>
 <body>
 <header>
-    <?php
-    // include 'Header.php';
-    ?>
+    <h1><a href="Index.php">quizy.pl</a></h1>
 </header>
 <main>
     <h2>Profil</h2>

@@ -13,10 +13,7 @@ session_start();
 </head>
 <body>
 <header>
-    <?php
-    include 'Header.php'
-
-    ?>
+    <h1><a href="Index.php">quizy.pl</a></h1>
 </header>
 <main>
 
@@ -50,11 +47,14 @@ session_start();
 </form>
     <span>
         <h3>Masz już konto?</h3>
-        <p>Zaloguj się: <a href="Login.php">Zarejestruj się</a></p>
+        <p><a href="Login.php">Zaloguj się</a></p>
     </span>
     <?php
 
     include_once "Connect.php";
+
+
+
 
     if (isset($_POST["first_name"]) && isset($_POST["last_name"]) && isset($_POST["user_name"]) && isset($_POST["email"])
     && isset($_POST["password"]) && isset($_POST["password1"]))
@@ -66,16 +66,34 @@ session_start();
         $password = $_POST["password"];
         $password1 = $_POST["password1"];
 
-        if($password == $password1){
-            $role = 1;
-            $query = "INSERT INTO users(first_name, last_name, user_name, email, password, role) VALUES ('$first_name', '$last_name', '$user_name', '$email', '$password', $role)";
-            mysqli_query($conn, $query);
-
-
+        $query = "SELECT * FROM users WHERE user_name = \"$user_name\"";
+        $result = $conn->query($query);
+        if ($result->num_rows > 0) {
+            echo "<script>alert('Jest już taka nazwa użytkownika!');</script>";
         }
         else{
-            echo "Hasła nie są takie same";
+
+            $query = "SELECT * FROM users WHERE email = \"$email\" ";
+            $result = $conn->query($query);
+            if ($result->num_rows > 0) {
+                echo "<script>alert('Email jest wykorzystany!');</script>";
+                }
+            else{
+                if($password == $password1){
+                    $role = 1;
+                    $query = "INSERT INTO users(first_name, last_name, user_name, email, password, role) VALUES ('$first_name', '$last_name', '$user_name', '$email', '$password', $role)";
+                    mysqli_query($conn, $query);
+
+
+                }
+                else{
+                    echo "<script>alert('Hasła nie są takie same!');</script>";
+                }
+            }
+
         }
+
+
 
 
 

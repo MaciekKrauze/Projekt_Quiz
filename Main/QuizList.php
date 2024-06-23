@@ -94,6 +94,7 @@ if (isset($_POST['quiz_id']) && is_numeric($_POST['quiz_id'])) {
 
 
     header('Location: Quiz_form.php');
+
     exit;
 }
 ?>

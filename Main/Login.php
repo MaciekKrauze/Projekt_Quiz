@@ -12,9 +12,7 @@ session_start();
 </head>
 <body>
 <header>
-    <?php
-    include 'Header.php'
-    ?>
+    <h1><a href="Index.php">quizy.pl</a></h1>
 </header>
 <main>
 
@@ -32,7 +30,7 @@ session_start();
 
 <span>
     <h3>Nie masz konta?</h3>
-    <p>Załóż je: <a href="Register.php">Zarejestruj się</a></p>
+    <p><a href="Register.php">Zarejestruj się</a></p>
 </span>
 </main>
 <footer>
