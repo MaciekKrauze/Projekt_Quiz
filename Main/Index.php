@@ -40,7 +40,35 @@ session_start();
     ?>
 </header>
 <main>
+    <section>
+        <h2>Wybierz quiz z listy</h2>
+        <a href="QuizList.php">wejdź tutaj</a>
+    </section>
+    <section>
+        <h2>Wykonaj quiz dnia</h2>
 
+    </section>
+    <section>
+        <h2>Wykonaj losowy quiz</h2>
+        <?php
+        include_once "Connect.php";
+        $query = "SELECT COUNT(*) FROM quizzes";
+
+        $result = $conn->query($query);
+
+    while ($row = $result->fetch_assoc()) {
+        $max = $row['COUNT(*)'];
+}
+        $quiz_id = rand(1, $max);
+        setcookie('selected_quiz', $quiz_id, time() + 360, '/');
+        ?>
+        <a href="Quiz_form.php">Kliknij aby spróbować</a>
+
+    </section>
+    <section>
+        <h2>Spróbuj tryb arcade</h2>
+
+    </section>
 
 </main>
 <footer>

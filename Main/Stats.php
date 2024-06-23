@@ -23,9 +23,14 @@ if ($result->num_rows > 0) {
     }
 
     $maxPoints = 0;
-    $query = "";
-}
+    $query = "SELECT COUNT(*) FROM user_quiz_attempts WHERE user_id =$id_users";
+    if ($result->num_rows > 0) {
+        while ($row = $result->fetch_assoc()) {
+            $maxPoints = $row['COUNT(*)'];
 
+        }
+    }
+}
 
 ?>
 <!DOCTYPE html>
