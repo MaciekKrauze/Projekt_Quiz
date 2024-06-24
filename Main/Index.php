@@ -30,7 +30,7 @@ if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
             echo "<li><a href=\"AdminPanel.php\">Admin Panel</a></li>";
         }
         ?>
-        <li><form action="Index.php" method="POST"><button type="submit"  name="logOut">Wyloguj</button></form></li>
+        <li><form action="Index.php" method="POST"><button type="submit" id="logOutButton"  name="logOut">Wyloguj</button></form></li>
     </ul>
 
     <?php
@@ -66,7 +66,7 @@ if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
     </section>
     <section>
         <h2>Spróbuj tryb arcade</h2>
-
+        <input type="submit" name="" value="Kliknij aby rozpocząć">
     </section>
 
 </main>

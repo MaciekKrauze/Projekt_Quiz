@@ -1,19 +1,25 @@
+* {
+
+}
+h1 {
+    text-decoration: none;
+}
 body {
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    min-height: 100vh; /* Set body height to viewport height */
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 header {
     display: flex;
-    flex-direction: column; /* Maintain original layout */
+    flex-direction: column;
 }
 
 main {
     display: flex;
-    justify-content: center; /* Center main content horizontally */
+    justify-content: center;
     padding: 2em;
-    align-items: center; /* Center content vertically if needed */
+    align-items: center;
     flex-direction: column;
 }
 
