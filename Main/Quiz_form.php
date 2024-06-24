@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
+    header("Location: Login.php");
+}
 $id_users = $_SESSION['id_users'];
 $quiz_id = $_COOKIE['selected_quiz'];
 $points = 0;
@@ -40,7 +43,7 @@ if ($result1->num_rows > 0) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Quiz</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../CSS/Quiz_form.css">
 </head>
 <body>
 <header>
@@ -59,7 +62,7 @@ if ($result1->num_rows > 0) {
             echo "<form method='POST' action='Quiz_form.php'>";
             $correct_answers = [];
 
-
+            echo "<div class='one'>";
             for ($k = 0; $k < count($questions); $k++) {
                 $query3 = "SELECT * FROM quiz_answers WHERE question_id = $questions[$k] AND is_correct = 1";
                 $result3 = $conn->query($query3);
@@ -69,7 +72,7 @@ if ($result1->num_rows > 0) {
             }
 
             for ($j = 0; $j < count($questions); $j++) {
-                echo "<div>";
+                echo "<div class='two'>";
                 echo "<h3>$questions_text[$j]</h3>";
                 $query2 = "SELECT * FROM quiz_answers WHERE question_id = $questions[$j]";
                 $result2 = $conn->query($query2);
@@ -84,7 +87,8 @@ if ($result1->num_rows > 0) {
                 }
                 echo "</div>";
             }
-            echo "<input type='submit' value='submit'>";
+            echo "</div>";
+            echo "<input type='submit' value='Wyślij'>";
             echo "</form>";
 
             if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -143,7 +147,7 @@ if ($result1->num_rows > 0) {
 
             echo "<form action='Quiz_form.php' method='POST'>";
             for ($m = 0; $m < count($questions); $m++) {
-                echo "<div>";
+                echo "<div class='three'>";
                 echo "<h3>$questions_text[$m]</h3>";
                 $query2 = "SELECT * FROM quiz_answers WHERE question_id = ?";
                 $stmt2 = $conn->prepare($query2);
@@ -154,8 +158,10 @@ if ($result1->num_rows > 0) {
                     while ($row = $result2->fetch_assoc()) {
                         $answer_id = $row['answer_id'];
                         $answer_text = $row['answer_text'];
+                        echo "<div class='four'>";
                         echo "<label for='answer_{$questions[$m]}_$answer_id'>$answer_text</label>";
                         echo "<input type='checkbox' id='answer_{$questions[$m]}_$answer_id' name='question_{$questions[$m]}[]' value='$answer_id'> <br>";
+                        echo "</div>";
                     }
                 }
                 echo "</div>";
@@ -222,9 +228,8 @@ if ($result1->num_rows > 0) {
                 }
             }
 
-            var_dump($questions_images);
             for ($j = 0; $j < count($questions); $j++) {
-                echo "<div>";
+                echo "<div class='five'>";
                 echo "<h3>$questions_text[$j]</h3>";
                 echo "<img src=\"../Images/Quiz_images/$questions_images[$j]\">";
                 echo "<input type='text' name='answer_$j' id='answer_$j' required> <br>";
@@ -272,9 +277,7 @@ if ($result1->num_rows > 0) {
           </script>";
             }
             break;
-
     }
-
     ?>
 </main>
 <footer>

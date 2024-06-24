@@ -49,6 +49,11 @@ a {
     color : white;
     background-color: orange;
 }
+a:hover {
+    opacity: 0.75;
+    transform: scale(1.05);
+
+}
 p {
     display: flex;
     background-color: orange;
@@ -76,4 +81,9 @@ input[type="submit"]{
     height: 2.5em;
     border-radius: 10px;
     border: none;
+}
+input[type="submit"]:hover {
+    opacity: 0.75;
+    transform: scale(1.05);
+
 }

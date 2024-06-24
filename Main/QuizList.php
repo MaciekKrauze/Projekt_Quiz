@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
+    header("Location: Login.php");
+}
 include_once "Connect.php";
 
 $query = "SELECT * FROM categories ";
@@ -21,7 +24,7 @@ while ($row = $result->fetch_assoc()) {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Lista quizów</title>
-        <link rel="stylesheet" href="">
+        <link rel="stylesheet" href="../CSS/QuizList.css">
     </head>
     <body>
     <header>
@@ -34,11 +37,11 @@ while ($row = $result->fetch_assoc()) {
         <?php
         $quizz_names = [];
         for ($j = 0; $j < count($categories); $j++) {
-            echo "<section>";
+            echo "<article>";
             echo "<h2> $categories[$j] </h2>";
             $query1 = "SELECT * FROM quizzes WHERE category_id = (" . ($j + 1) . ") ";
             $result1 = $conn->query($query1);
-
+        echo "<section>";
             if ($result1->num_rows > 0) {
                 while ($row = $result1->fetch_assoc()) {
                     $quiz_id = $row['quiz_id']; // Get quiz ID
@@ -46,18 +49,18 @@ while ($row = $result->fetch_assoc()) {
                     $quiz_type = $row['quiz_type'];
                     $description = $row['description'];
 
-                    echo "<div>";
+                    echo "<div class='one'>";
                     echo "<h3> $quiz_name</h3>";
-
+                    echo "<div class='two'>";
                     switch ($quiz_type) {
                         case 1:
-                            echo "Test jednokrotnego wyboru";
+                            echo "<p>Test jednokrotnego wyboru</p>";
                             break;
                         case 2:
-                            echo "Test wielokrotnego wyboru";
+                            echo "<p>Test wielokrotnego wyboru</p>";
                             break;
                         case 3:
-                            echo "Test typu: odgadnij coś z obrazka";
+                            echo "<p>Test typu: odgadnij coś z obrazka</p>";
                             break;
                     }
                     echo "<p>$description</p>";
@@ -69,9 +72,11 @@ while ($row = $result->fetch_assoc()) {
                     echo "</form>";
 
                     echo "</div>";
+                    echo "</div>";
                 }
             }
             echo "</section>";
+            echo "</article>";
         }
         ?>
 

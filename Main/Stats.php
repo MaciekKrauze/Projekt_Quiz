@@ -1,5 +1,8 @@
 <?php
 session_start();
+if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
+    header("Location: Login.php");
+}
 $id_users = $_SESSION["id_users"];
 include_once "Connect.php";
 
