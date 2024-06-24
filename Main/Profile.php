@@ -10,7 +10,7 @@ $id_users = $_SESSION['id_users'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profil</title>
-    <link rel="stylesheet" href="">
+    <link rel="stylesheet" href="../CSS/Profile.css">
 </head>
 <body>
 <header>
@@ -59,15 +59,14 @@ $id_users = $_SESSION['id_users'];
                 <section>
                     <h3>Avatar</h3>
                     <input type="file" name="avatar">
-                    <img src="../Images/User_images/avatar.jpg">
-                    <img src="<?php echo $avatar; ?>" alt="Avatar" style="width: 100px;">
+                    <img src="../Images/User_images/<?php echo $avatar;  ?>" alt="Avatar" >
                 </section>
                 <section>
                     <h3>Data stworzenia konta</h3>
                     <p><?php echo $created_at; ?></p>
                 </section>
                 <section>
-                    <input type="submit" value="Update Profile">
+                    <input type="submit" value="Zaktualizuj profil">
                 </section>
             </form>
             <?php

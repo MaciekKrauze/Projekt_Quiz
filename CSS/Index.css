@@ -1,5 +1,5 @@
 * {
-    background-color: black;
+    background-color: #30302b;
 }
 main {
     display: flex;
@@ -12,7 +12,7 @@ section {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: grey;
+    background-color: #262522;
     border-radius: 12em;
     padding: 4em;
 }
@@ -30,9 +30,9 @@ header {
 
 }
 li {
-   margin: 1em;
+   margin: 1.6em;
     color: white;
-
+    scale: 1.6;
 }
 a {
     text-decoration: none;
@@ -43,14 +43,20 @@ a {
     background-color: orange;
     border-radius: 5px;
     width: 5em;
-    height: 5em;
+    height: 4em;
 }
-h1 {
-color: #81b64c;
+h1 a{
+    color: #81b64c;
+    background: url('../Images/logo.png') no-repeat;
+    width: 150px;
+    height: 150px;
+    text-indent: -9999px;
+    overflow: hidden;
+    display: inline-block;
 }
 h2 {
-color: white;
-    background-color: grey;
+    color: white;
+    background-color: #262522;
 }
 input {
     background-color: #81b64c;
@@ -61,6 +67,11 @@ input {
     display: flex;
 }
 input[type="submit"]:hover {
-    background-color: #0056b3; /* Ciemniejszy niebieski */
-    transform: scale(1.05); /* Powiększenie */
+    opacity: 0.75;
+    transform: scale(1.05);
+}
+li :hover {
+    opacity: 0.75;
+    transform: scale(1.05);
+
 }

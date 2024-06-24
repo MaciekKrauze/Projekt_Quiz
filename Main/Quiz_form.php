@@ -213,20 +213,20 @@ if ($result1->num_rows > 0) {
             echo "<form method='POST' action='Quiz_form.php'>";
             $correct_answers_text = [];
 
-// Pobierz poprawne odpowiedzi dla każdego pytania
+
             for ($k = 0; $k < count($questions); $k++) {
                 $query3 = "SELECT * FROM quiz_answers WHERE question_id = $questions[$k] AND is_correct = 1";
                 $result3 = $conn->query($query3);
                 while ($row = $result3->fetch_assoc()) {
-                    $correct_answers_text[$k] = $row['answer_text']; // Używamy answer_text jako klucza poprawnej odpowiedzi
+                    $correct_answers_text[$k] = $row['answer_text'];
                 }
             }
 
-// Wyświetl pytania i pola odpowiedzi w formularzu
+            var_dump($questions_images);
             for ($j = 0; $j < count($questions); $j++) {
                 echo "<div>";
                 echo "<h3>$questions_text[$j]</h3>";
-                echo "<img src=\"$questions_images[$j]\">";
+                echo "<img src=\"../Images/Quiz_images/$questions_images[$j]\">";
                 echo "<input type='text' name='answer_$j' id='answer_$j' required> <br>";
                 echo "</div>";
             }
@@ -239,13 +239,13 @@ if ($result1->num_rows > 0) {
             if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 $user_answers = [];
 
-                // Iteruj przez każde pytanie
+
                 for ($o = 0; $o < count($questions); $o++) {
-                    // Pobierz odpowiedź użytkownika
+
                     $user_answer = $_POST["answer_$o"];
                     $user_answers[] = $user_answer;
 
-                    // Wstaw odpowiedź użytkownika do bazy danych (upewnij się, że dane są bezpieczne!)
+
                     $question_id = $questions[$o];
                     $selected_answer = $conn->real_escape_string($user_answer);
 
@@ -255,17 +255,17 @@ if ($result1->num_rows > 0) {
                    VALUES ($id_users, $question_id, 1)";
                     $result4 = $conn->query($query4);
 
-                    // Porównaj odpowiedź użytkownika z poprawną odpowiedzią
+
                     if ($user_answer == $correct_answers_text[$o]) {
                         $points++;
                     }
                 }
 
-                // Wstaw wynik quizu do bazy danych
+
                 $query5 = "INSERT INTO user_quiz_attempts (user_id, quiz_id, score) VALUES ($id_users, $quiz_id, $points)";
                 $result5 = $conn->query($query5);
 
-                // Wyświetl wynik użytkownikowi
+
                 echo "<script>
           alert('Poprawnie odpowiedziałeś $points razy/raz');
           window.location.href = 'QuizList.php';

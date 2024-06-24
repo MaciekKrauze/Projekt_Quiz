@@ -1,3 +1,18 @@
+* {
+    background-color: #30302b;
+
+}
+
+h1 a{
+    color: #81b64c;
+    background: url('../Images/logo.png') no-repeat;
+    width: 150px;
+    height: 150px;
+    text-indent: -9999px;
+    overflow: hidden;
+    display: inline-block;
+}
+
 body {
     display: flex;
     flex-direction: column;
@@ -25,7 +40,23 @@ label {
     display: block;
     margin-bottom: 0.5em;
 }
-
+h3, h2, label {
+    color: white;
+}
+a {
+    text-decoration: none;
+    color : white;
+    background-color: orange;
+}
+p {
+    display: flex;
+    background-color: orange;
+    border-radius: 5px;
+    width: 7em;
+    height: 3em;
+    justify-content: center;
+    align-items: center;
+}
 input[type="text"],
 input[type="email"],
 input[type="password"] {
@@ -33,6 +64,8 @@ input[type="password"] {
     width: 100%;
     padding: 0.5em;
     border: 1px solid #ccc;
+    border-radius: 5px;
+    color: rgb(159, 159, 159);;
 }
 
 input[type="submit"]{

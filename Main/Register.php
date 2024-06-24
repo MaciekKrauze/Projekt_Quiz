@@ -16,7 +16,7 @@ session_start();
     <h1><a href="Index.php">quizy.pl</a></h1>
 </header>
 <main>
-
+<h2>Zarejestruj się</h2>
 <form action="Register.php" method="POST">
     <div>
         <label for="first_name">Imię:</label>
