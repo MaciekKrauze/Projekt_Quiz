@@ -20,7 +20,6 @@ if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
 <header>
 
     <h1><a href="Index.php">quizy.pl</a></h1>
-
     <ul>
         <li><a href="QuizList.php">Quizy</a></li>
         <li><a href="Profile.php">Profil</a></li>

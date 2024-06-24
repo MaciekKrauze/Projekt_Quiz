@@ -59,6 +59,7 @@ $id_users = $_SESSION['id_users'];
                 <section>
                     <h3>Avatar</h3>
                     <input type="file" name="avatar">
+                    <img src="../Images/User_images/avatar.jpg">
                     <img src="<?php echo $avatar; ?>" alt="Avatar" style="width: 100px;">
                 </section>
                 <section>
