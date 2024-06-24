@@ -1,5 +1,10 @@
 <?php
 session_start();
+
+if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
+    header("Location: Login.php");
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -42,27 +47,22 @@ session_start();
 <main>
     <section>
         <h2>Wybierz quiz z listy</h2>
-        <a href="QuizList.php">wejdź tutaj</a>
+        <form method="POST">
+            <input type="submit" name="quizList" value="Kliknij aby przejść">
+        </form>
     </section>
     <section>
         <h2>Wykonaj quiz dnia</h2>
-
+        <form method="POST">
+            <input type="submit" name="dayQuiz" value="Kliknij aby przejść">
+        </form>
     </section>
     <section>
         <h2>Wykonaj losowy quiz</h2>
-        <?php
-        include_once "Connect.php";
-        $query = "SELECT COUNT(*) FROM quizzes";
 
-        $result = $conn->query($query);
-
-    while ($row = $result->fetch_assoc()) {
-        $max = $row['COUNT(*)'];
-}
-        $quiz_id = rand(1, $max);
-        setcookie('selected_quiz', $quiz_id, time() + 360, '/');
-        ?>
-        <a href="Quiz_form.php">Kliknij aby spróbować</a>
+        <form method="POST">
+            <input type="submit" name="randomQuiz" value="Kliknij aby wylosować">
+        </form>
 
     </section>
     <section>
@@ -80,9 +80,53 @@ session_start();
 </html>
 
 <?php
+include_once "Connect.php";
 
-if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
-    header("Location: Login.php");
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+
+    $query = "SELECT COUNT(*) FROM quizzes";
+
+    $result = $conn->query($query);
+
+    while ($row = $result->fetch_assoc()) {
+        $max = $row['COUNT(*)'];
+    }
+
+    if(isset($_POST['quizList'])){
+        header("Location: QuizList.php");
+    }
+    if (isset($_POST['randomQuiz'])) {
+        $quiz_id = rand(1, $max);
+        setcookie('selected_quiz', $quiz_id, time() + 360, '/');
+        header("Location: Quiz_form.php");
+    }
+    if(isset($_POST['dayQuiz'])){
+
+        $today = date('Y-m-d');
+        $pseudoRandomNumber = generatePseudoRandomNumberByDate($today);
+        setcookie('selected_quiz', $pseudoRandomNumber % $max + 1, time() + 360, '/');
+        header("Location: Quiz_form.php");
+        exit();
+    }
+
+
 }
+
+
+function generatePseudoRandomNumberByDate($date) {
+    // Wydobycie roku, miesiąca i dnia z daty
+    $year = date('Y', strtotime($date));
+    $month = date('m', strtotime($date));
+    $day = date('d', strtotime($date));
+    $combined = $year . $month . $day;
+    $seed = intval($combined);
+    srand($seed);
+    $randomNumber = rand();
+    srand();
+
+    return $randomNumber;
+}
+
+
 
 ?>
