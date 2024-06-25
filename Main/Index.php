@@ -15,6 +15,8 @@ if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
     <title>Strona Główna</title>
     <title>My Website</title>
     <link rel="stylesheet" href="../CSS/Index.css">
+    <link rel="stylesheet" href="../CSS/General.css">
+
 </head>
 <body>
 <header>
@@ -66,7 +68,7 @@ if(!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)){
     </section>
     <section>
         <h2>Spróbuj tryb arcade</h2>
-        <input type="submit" name="" value="Kliknij aby rozpocząć">
+        <input type="submit" name="Arcade" value="Kliknij aby rozpocząć">
     </section>
 
 </main>
@@ -104,6 +106,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $today = date('Y-m-d');
         $pseudoRandomNumber = generatePseudoRandomNumberByDate($today);
         setcookie('selected_quiz', $pseudoRandomNumber % $max + 1, time() + 360, '/');
+        header("Location: Quiz_form.php");
+        exit();
+    }
+    if(isset($_POST['Arcade'])){
+        $quizzes = [];
+        for ($i = 0; $i < $max; $i++) {
+            $quizzes[$i] = $i;
+        }
+        $quizzes = shuffle($quizzes);
+        $_SESSION['Arcade'] = $quizzes;
+        $_SESSION['Arcade_progress'] = 0;
+        var_dump($quizzes);
         header("Location: Quiz_form.php");
         exit();
     }

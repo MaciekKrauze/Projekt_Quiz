@@ -10,6 +10,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zarejestruj się</title>
     <link rel="stylesheet" href="../CSS/Register.css">
+    <link rel="stylesheet" href="../CSS/General.css">
+
 </head>
 <body>
 <header>

@@ -48,6 +48,8 @@ if ($result1->num_rows > 0) {
 <body>
 <header>
     <h1><a href="Index.php">quizy.pl</a></h1>
+    <link rel="stylesheet" href="../CSS/General.css">
+
 </header>
 <main>
 

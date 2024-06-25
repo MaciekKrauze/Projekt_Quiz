@@ -25,6 +25,8 @@ while ($row = $result->fetch_assoc()) {
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Lista quizów</title>
         <link rel="stylesheet" href="../CSS/QuizList.css">
+        <link rel="stylesheet" href="../CSS/General.css">
+
     </head>
     <body>
     <header>

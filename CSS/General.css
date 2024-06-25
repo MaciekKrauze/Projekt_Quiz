@@ -1,0 +1,12 @@
+* {
+    background-color: #30302b;
+}
+footer h2 {
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    justify-content: space-around;
+    font-size: 1em;
+    background-color: #30302b;
+    color: white;
+}

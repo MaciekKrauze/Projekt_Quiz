@@ -11,6 +11,8 @@ $id_users = $_SESSION['id_users'];
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Profil</title>
     <link rel="stylesheet" href="../CSS/Profile.css">
+    <link rel="stylesheet" href="../CSS/General.css">
+
 </head>
 <body>
 <header>

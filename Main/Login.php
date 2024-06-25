@@ -9,6 +9,8 @@ session_start();
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Zaloguj się</title>
     <link rel="stylesheet" href="../CSS/Login.css">
+    <link rel="stylesheet" href="../CSS/General.css">
+
 </head>
 <body>
 <header>

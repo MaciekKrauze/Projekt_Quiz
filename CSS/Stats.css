@@ -1,0 +1,20 @@
+* {
+    background-color: #30302b;
+}
+h1 a{
+    color: #81b64c;
+    background: url('../Images/logo.png') no-repeat;
+    width: 150px;
+    height: 150px;
+    text-indent: -9999px;
+    overflow: hidden;
+    display: inline-block;
+}
+a:hover {
+    opacity: 0.75;
+    transform: scale(1.05);
+
+}
+h2, h3, p {
+    color: white;
+}

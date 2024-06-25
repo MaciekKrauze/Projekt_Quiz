@@ -16,6 +16,7 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Strona Główna</title>
     <link rel="stylesheet" href="../CSS/AdminPanel.css">
+    <link rel="stylesheet" href="../CSS/General.css">
 </head>
 <body>
 <header>
@@ -41,6 +42,10 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                 <div>
                     <label for="Delete"> Usunąć</label>
                     <input type="radio" id="Delete" value="Delete" name="action_one" <?php if ($action_one == "Delete") echo "checked"; ?>>
+                </div>
+                <div>
+                    <label for="Export"> Eksportować</label>
+                    <input type="radio" id="Export" value="Export" name="action_one" <?php if ($action_one == "Export") echo "checked"; ?>>
                 </div>
             </article>
 
@@ -174,12 +179,30 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                                 }
                             }
                             break;
-                        default:
-                            echo "Nieznana akcja";
+                        case "Export":
+                            $query = "SELECT * FROM $action_two";
+                            $result = $conn->query($query);
+
+                            if ($result->num_rows > 0) {
+                                $filename = $action_two . "_data_" . date('Ymd') . ".csv";
+                                header('Content-Type: text/csv');
+                                header('Content-Disposition: attachment;filename=' . $filename);
+
+                                $fp = fopen('php://output', 'w');
+
+                                fputcsv($fp, $columns);
+
+                                while ($row = $result->fetch_assoc()) {
+                                    fputcsv($fp, $row);
+                                }
+
+                                fclose($fp);
+                                exit;
+                            } else {
+                                echo "Brak danych do eksportowania.";
+                            }
                             break;
                     }
-                } else {
-                    echo "Nie znaleziono kolumn dla tabeli: $action_two";
                 }
                 echo "</table>";
             }
