@@ -38,7 +38,8 @@ h3{
 }
 .one {
     display: flex;
-
+    flex-wrap: wrap;
+    justify-content: center;
 }
 .two{
     border: solid #484747;
@@ -58,10 +59,14 @@ input[type = "submit"]{
     height: 5em;
     display: flex;
 }
+input {
+    padding: 1em;
+}
 input[type = "text"], input[type ="email"], input[type ="password"] input[type = "radio"]{
 
     color: #9b9b9b;
     border-radius: 10px;
+
 }
 label {
     color: white;

@@ -91,7 +91,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email= $_POST['email'];
     $password= $_POST['password'];
     $avatar= $_POST['avatar'];
-    var_dump($avatar);
     $query1 = "UPDATE users SET first_name = '$first_name', last_name = '$last_name', user_name = '$user_name', email = '$email', 
                  password = '$password', avatar = '$avatar'  WHERE (id_users = $id_users)";
 
