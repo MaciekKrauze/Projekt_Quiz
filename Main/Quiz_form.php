@@ -118,9 +118,13 @@ if ($result1->num_rows > 0) {
                     }
 
 
-
+//
                 $query4 = "INSERT INTO user_quiz_attempts (user_id, quiz_id, score) VALUES ($id_users, $quiz_id, $points)";
                 $result4 = $conn->query($query4);
+//
+//                $query4 = "INSERT INTO user_quiz_answers (user_id, quiz_id, question_id, selected_answer_id)
+//                            VALUE ($id_users, $quiz_id, $questions[$a], $user_answers[$l])";
+//                $result4 = $conn->query($query4);
 
 
                 echo "<script>

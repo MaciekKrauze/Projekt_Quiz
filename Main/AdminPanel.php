@@ -7,6 +7,7 @@ if (!(isset($_SESSION["role"]) && $_SESSION["role"] > 0)) {
 include_once "Connect.php";
 $action_one = isset($_POST["action_one"]) ? $_POST["action_one"] : null;
 $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
+
 ?>
 <!DOCTYPE html>
 <html lang="pl">
@@ -32,8 +33,8 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                     <input type="radio" id="View" value="View" name="action_one" <?php if ($action_one == "View") echo "checked"; ?>>
                 </div>
                 <div>
-                    <label for="Modify"> Zmodyfikować</label>
-                    <input type="radio" id="Modify" value="Modify" name="action_one" <?php if ($action_one == "Modify") echo "checked"; ?>>
+                    <label for="Add"> Dodać</label>
+                    <input type="radio" id="Add" value="Add" name="action_one" <?php if ($action_one == "Add") echo "checked"; ?>>
                 </div>
                 <div>
                     <label for="Modify"> Zmodyfikować</label>
@@ -77,7 +78,7 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
 
                 echo "<table>";
 
-                $query = "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = 'quizzespage' AND TABLE_NAME = '$action_two'";
+                $query = "SELECT COLUMN_NAME FROM information_schema.COLUMNS WHERE TABLE_SCHEMA = 's29747' AND TABLE_NAME = '$action_two'";
                 $result = $conn->query($query);
                 $columns = [];
                 while ($row = $result->fetch_assoc()) {
@@ -103,9 +104,9 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                             }
                             break;
                         case "Add":
+                            echo "<section class='last'>";
                             echo "<h2>Dodaj nowy rekord</h2>";
                             echo "<form action='AdminPanel.php' method='post'>";
-                            // Pomijamy pierwszą kolumnę (zakładamy, że to ID)
                             for ($i = 1; $i < count($columns); $i++) {
                                 echo "<label>{$columns[$i]}:</label>";
                                 echo "<input type='text' name='{$columns[$i]}'><br>";
@@ -114,6 +115,7 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                             echo "<input type='hidden' name='action_two' value='$action_two'>";
                             echo "<input type='submit'>";
                             echo "</form>";
+                            echo "</section>";
 
                             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST[$columns[1]])) {
                                 $values = [];
@@ -130,6 +132,7 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                             }
                             break;
                         case "Modify":
+                            echo "<section class='last'>";
                             echo "<h2>Zmodyfikuj rekord</h2>";
                             echo "<form action='AdminPanel.php' method='post'>";
                             echo "<label>ID rekordu do zmodyfikowania:</label>";
@@ -142,7 +145,7 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                             echo "<input type='hidden' name='action_two' value='$action_two'>";
                             echo "<input type='submit'>";
                             echo "</form>";
-
+                            echo "</section>";
                             if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['id'])) {
                                 $id = $_POST['id'];
                                 $updates = [];
@@ -161,6 +164,7 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                             }
                             break;
                         case "Delete":
+                            echo "<section class='last'>";
                             echo "<h2>Numer id do usunięcia</h2>";
                             echo "<form action='AdminPanel.php' method='post'>";
                             echo "<input type='hidden' name='action_one' value='Delete'>";
@@ -168,6 +172,7 @@ $action_two = isset($_POST["action_two"]) ? $_POST["action_two"] : null;
                             echo "<input type='number' name='number'>";
                             echo "<input type='submit'>";
                             echo "</form>";
+                            echo "</section>";
 
                             if (isset($_POST["number"])) {
                                 $number = $_POST["number"];
